@@ -1,4 +1,9 @@
 gdrivefs_chrome_app/*
 .gdrivefs_chrome_app_packed/*
 gdrivefs_chrome_app.zip
+gdrivefs_oauth
+authenticate.html
+client_secrets.json
+*.pyc
+*/*.pyc
 
