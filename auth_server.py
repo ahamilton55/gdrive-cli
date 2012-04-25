@@ -12,10 +12,11 @@ Date:
     Wed Apr 25 08:44:42 EDT 2012
 """
 
+from urlparse import parse_qs
 import SocketServer
 import BaseHTTPServer
 
-PORT = 8080
+PORT = 8081
 
 class AuthRedirectHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
@@ -28,9 +29,17 @@ class AuthRedirectHandler(BaseHTTPServer.BaseHTTPRequestHandler):
     def _handle_request(self):
         self.send_response(200)
         self.send_header("Content-Type", "text/html")
-        self.end_headers();
-        dir(self)
-        self.wfile.write("authcode: " + path)
+        self.end_headers()
+        query = parse_qs(self.path)
+        try:
+            code = query["code"][0]
+        except:
+            # Roll over exceptions, the browser requests favicon.ico for example.
+            pass
+
+        self.wfile.write("Thank you. Your code is %(code)s Starting GDriveFS..." % { "code" : code })
+        print self.path
+
 
 if __name__ == '__main__':
     handler = AuthRedirectHandler
