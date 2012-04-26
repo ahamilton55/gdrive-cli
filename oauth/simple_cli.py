@@ -16,11 +16,16 @@ SCOPES = [
 ]
 
 def authenticate():
+    """
+    Authenticates and returns OAuth2 credentials.
+
+    Warning, this launches a web browser! You will need to click.
+    """
     storage_path = getenv("HOME") + "/.gdrivefs.dat"
     storage = Storage(storage_path)
     flow = flow_from_clientsecrets(CLIENTSECRETS_LOCATION, ' '.join(SCOPES))
     credentials = run(flow, storage)
-
+    return credentials
 
 if __name__ == '__main__':
     authenticate()
