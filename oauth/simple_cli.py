@@ -7,7 +7,7 @@ from oauth2client.tools import run
 from pprint import pprint
 from os import getenv
 
-CLIENTSECRETS_LOCATION="client_secrets.json"
+CLIENTSECRETS_LOCATION=".private/client_secrets.json"
 
 SCOPES = [
         'https://www.googleapis.com/auth/drive.file',
@@ -27,5 +27,3 @@ def authenticate():
     credentials = run(flow, storage)
     return credentials
 
-if __name__ == '__main__':
-    authenticate()
