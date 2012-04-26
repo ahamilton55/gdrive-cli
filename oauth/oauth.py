@@ -15,7 +15,7 @@ from apiclient.discovery import build
 #       "token_uri": "https://accounts.google.com/o/oauth2/token"
 #     }
 #   }
-CLIENTSECRETS_LOCATION = "client_secrets.json"
+CLIENTSECRETS_LOCATION = "../client_secrets.json"
 REDIRECT_URI = "http://localhost:8081"
 
 SCOPES = [

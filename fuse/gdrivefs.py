@@ -1,18 +1,22 @@
+#!/usr/bin/env python
 """
 A Fuse Wrapper for Google Drive
 
 Author: Tom Dignan <tom@tomdignan.com
 """
-
-#!/usr/bin/python
-
-from fuse import Fuse
+import fuse
 from time import time
-
 import stat    # for file properties
 import os      # for filesystem modes (O_RDONLY, etc)
 import errno   # for error number codes (ENOENT, etc)
                # - note: these must be returned as negatives
+"""
+python-fuse version
+
+This must reflect your version of fuse for python.
+"""
+fuse.fuse_python_api = (0,2)
+Fuse = fuse.Fuse
 
 
 def dirFromList(list):
@@ -26,7 +30,7 @@ def getDepth(path):
     """
     Return the depth of a given path, zero-based from root ('/')
     """
-    if path <code></code> '/':
+    if path is  '/':
         return 0
     else:
         return path.count('/')
@@ -35,7 +39,7 @@ def getParts(path):
     """
     Return the slash-separated parts of a given path as a list
     """
-    if path <code></code> '/':
+    if path is  '/':
         return [['/']]
     else:
         return path.split('/')
@@ -157,8 +161,10 @@ class GDriveFS(Fuse):
         return -errno.ENOSYS
 
 
-if __name__ == __main__:
+if __name__ == "__main__":
     fs = GDriveFS()
     fs.flags = 0
     fs.multithreaded = 0
-    fs.main()
+    mount = os.getenv("HOME") + "/GDriveFS"
+    print mount
+    fs.main(mount=mount)
