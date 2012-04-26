@@ -8,6 +8,6 @@ client_secrets.json
 */*.pyc
 *.swp
 */*.swp
+*.pid
 foo
-auth_server_process.pid
-
+start.sh
