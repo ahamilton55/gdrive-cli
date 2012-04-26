@@ -6,6 +6,8 @@ authenticate.html
 client_secrets.json
 *.pyc
 */*.pyc
+*.swp
+*/*.swp
 foo
 auth_server_process.pid
 
