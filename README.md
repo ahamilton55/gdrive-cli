@@ -1,13 +1,12 @@
 STATUS:
 
-Authentication w/ OAuth is working. Basic project architecture is in place.
-
-Just trying to hammer it out to work with the actual API, now.
+* Authentication w/ OAuth is working. It opens your browser.
+* Basic project architecture is in place.
+* Insert file is working!
 
 TODO:
 
-google docs api for listings.
-
+* local sqlite database to keep track of inserted files
 
 To use this project, you will need to be signed up for the Google Chrome Web 
 Store and for the Google Drive SDK and API. At the worst, this means you
