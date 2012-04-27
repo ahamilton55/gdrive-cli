@@ -12,6 +12,7 @@ from oauth import simple_cli
 from gdrive import gdrive
 from os import getenv
 import pickle
+from pprint import pprint
 
 def get_stored_credentials_path():
     return getenv("HOME") + "/.gdrive_oauth"
@@ -88,14 +89,17 @@ def handle_insert(args):
     description = args[1]
     parent_id = args[2]
 
-    if parent_id is "none":
+    if parent_id == "none":
         parent_id = None
 
     mime_type = args[3]
     filename = args[4]
 
-    gdrive.insert_file(service, title, description, parent_id, mime_type,
+    file = gdrive.insert_file(service, title, description, parent_id, mime_type,
             filename)
+
+    pprint(file)
+
 
 def handle_rename(args):
     pass
