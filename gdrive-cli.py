@@ -101,7 +101,7 @@ def handle_show(file_id):
 def handle_download(file_id):
     service = get_service_object()
     download = gdrive.download_file_by_id(service, file_id)
-    pprint(download)
+    print download
 
 def handle_insert(args):
     service = get_service_object()

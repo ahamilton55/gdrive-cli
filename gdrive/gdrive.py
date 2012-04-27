@@ -102,7 +102,7 @@ def download_file(service, drive_file):
     if download_url:
         resp, content = service._http.request(download_url)
         if resp.status == 200:
-            print 'Status: %s' % resp
+            #print 'Status: %s' % resp
             return content
         else:
             print 'An error occurred: %s' % resp
