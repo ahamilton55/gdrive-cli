@@ -116,6 +116,19 @@ def insert_file(metadata):
 
     return metadata["id"]
 
+def select_all_files():
+    """
+    Generates a basic listing of files in tbl_files
+    """
+    conn = connect()
+    cursor = conn.cursor()
+    cursor.execute("SELECT title, id FROM tbl_files")
+    files = cursor.fetchall()
+    cursor.close()
+    conn.commit()
+
+    return files
+
 
 
 

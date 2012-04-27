@@ -59,6 +59,8 @@ def make_argparser():
 
     parser.add_argument("--show", help="show file metadata", metavar="<file_id>")
 
+    parser.add_argument("--list", help="list application's files (uses local database)", action="store_true")
+
     parser.add_argument("--download", help="download file content", metavar="<drive_file>")
 
     parser.add_argument("--insert", help="insert new file", nargs=5,
@@ -76,6 +78,8 @@ def make_argparser():
 def handle_args(args):
     if args.authenticate is True:
         handle_authenticate()
+    if args.list is True:
+        handle_list()
     if args.show is not None:
         handle_show(args.show)
     elif args.download is not None:
@@ -118,6 +122,12 @@ def handle_insert(args):
 
     id = dbhelper.insert_file(file)
     print "Inserted file ", id
+
+def handle_list():
+    files = dbhelper.select_all_files()
+    print "filename\t\t\tid"
+    for f in files:
+        print "%(title)s\t\t%(id)s" % { "title" : f[0], "id" : f[1]}
 
 def handle_rename(args):
     pass
