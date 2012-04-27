@@ -3,6 +3,7 @@ STATUS:
 * Authentication w/ OAuth is working. It opens your browser.
 * Basic project architecture is in place.
 * Insert file is working!
+* Show is working!
 
 TODO:
 

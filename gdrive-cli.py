@@ -1,11 +1,25 @@
 #!/usr/bin/env python
-#
-# gdrive.py command line google drive client.
-#
-# Author: Tom Dignan <tom.dignan@gmail.com>
-# Date: Thu Apr 26 14:37:20 EDT 2012 
-#
-# Official Docs: https://developers.google.com/drive/
+"""
+Copyright 2012 Thomas Dignan <tom@tomdignan.com>
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+gdrive.py command line google drive client.
+
+Author: Tom Dignan <tom.dignan@gmail.com>
+Date: Fri Apr 27 16:00:35 EDT 2012
+Official Docs: https://developers.google.com/drive/
+"""
 
 import argparse
 from oauth import simple_cli
@@ -79,8 +93,11 @@ def handle_show(file_id):
     service = get_service_object()
     gdrive.print_file(service, file_id)
 
-def handle_download(args):
-    pass
+def handle_download(drive_file):
+    service = get_service_object()
+    download = gdrive.download_file(service, drive_file)
+
+    pprint(download)
 
 def handle_insert(args):
     service = get_service_object()
