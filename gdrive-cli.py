@@ -27,6 +27,7 @@ from gdrive import gdrive
 from os import getenv
 import pickle
 from pprint import pprint
+from db import helper as dbhelper
 
 def get_stored_credentials_path():
     return getenv("HOME") + "/.gdrive_oauth"
@@ -115,8 +116,8 @@ def handle_insert(args):
     file = gdrive.insert_file(service, title, description, parent_id, mime_type,
             filename)
 
-    pprint(file)
-
+    id = dbhelper.insert_file(file)
+    print "Inserted file ", id
 
 def handle_rename(args):
     pass
