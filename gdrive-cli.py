@@ -14,7 +14,7 @@ Copyright 2012 Thomas Dignan <tom@tomdignan.com>
    See the License for the specific language governing permissions and
    limitations under the License.
 
-gdrive.py command line google drive client.
+gdrive-cli.py command line google drive client.
 
 Author: Tom Dignan <tom.dignan@gmail.com>
 Date: Fri Apr 27 16:00:35 EDT 2012
@@ -61,15 +61,15 @@ def make_argparser():
 
     parser.add_argument("--list", help="list application's files (uses local database)", action="store_true")
 
-    parser.add_argument("--download", help="download file content", metavar="<drive_file>")
+    parser.add_argument("--download", help="download file contents and print to stdout", metavar="<drive_file>")
 
     parser.add_argument("--insert", help="insert new file", nargs=5,
             metavar=("<title -- must include file ext>", "<description>", "<parent_id (if none, pass none)>", "<mime_type>", "<filename>"))
 
-    parser.add_argument("--rename", help="rename a file", nargs=2,
+    parser.add_argument("--rename", help="TODO: rename a file", nargs=2,
             metavar=("<file_id>", "<new_title>"))
 
-    parser.add_argument("--update", help="update file", nargs=6,
+    parser.add_argument("--update", help="TODO: update file", nargs=6,
             metavar=("<file_id>", "<new_title>", "<new_description>", "<new_mime_type>",
                 "<new_filename>", "<new_revision>"))
 
@@ -98,10 +98,9 @@ def handle_show(file_id):
     service = get_service_object()
     gdrive.print_file(service, file_id)
 
-def handle_download(drive_file):
+def handle_download(file_id):
     service = get_service_object()
-    download = gdrive.download_file(service, drive_file)
-
+    download = gdrive.download_file_by_id(service, file_id)
     pprint(download)
 
 def handle_insert(args):
@@ -127,13 +126,13 @@ def handle_list():
     files = dbhelper.select_all_files()
     print "filename\t\t\tid"
     for f in files:
-        print "%(title)s\t\t%(id)s" % { "title" : f[0], "id" : f[1]}
+        print "%(title)s\t\t%(id)s" % { "title" : f[0], "id" : f[1] }
 
 def handle_rename(args):
-    pass
+    print "not implemented"
 
 def handle_update(args):
-    pass
+    print "not implemented"
 
 if __name__ == "__main__":
     parser = make_argparser()

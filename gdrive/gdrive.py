@@ -64,6 +64,29 @@ def print_file(service, file_id):
     except errors.HttpError, error:
         print 'An error occurred: %s' % error
 
+def get_file_instance(service, file_id):
+    """Print a file's metadata.
+
+    Args:
+        service: Drive API service instance.
+        file_id: ID of the file to print metadata for.
+
+    Returns:
+        file instance or None
+    """
+    try:
+        file = service.files().get(id=file_id).execute()
+        return file
+    except errors.HttpError, error:
+        print 'An error occurred: %s' % error
+        return None
+
+def download_file_by_id(service, file_id):
+    """
+    Download file content by id
+    """
+    drive_file = get_file_instance(service, file_id)
+    return download_file(service, drive_file)
 
 def download_file(service, drive_file):
     """Download a file's content.
