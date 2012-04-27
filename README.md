@@ -1,4 +1,13 @@
-WORK IN PROGRESS. PLEASE COME BACK IN A FEW HOURS. NOT DONE YET.
+STATUS:
+
+Authentication w/ OAuth is working. Basic project architecture is in place.
+
+Just trying to hammer it out to work with the actual API, now.
+
+TODO:
+
+google docs api for listings.
+
 
 To use this project, you will need to be signed up for the Google Chrome Web 
 Store and for the Google Drive SDK and API. At the worst, this means you
@@ -10,7 +19,7 @@ Authentication happens locally, through your browser! Launch it from the command
 with gdrive --authenticate and it will persist your credentials so that you can
 issue other commands. Just remember to click the dialog in your browser.
 
-See https://developers.google.com/drive/
+See https://developers.google.com/drive/ --- lots of attention is required here.
 
 Command line interface to Google Drive
 

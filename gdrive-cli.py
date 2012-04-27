@@ -46,7 +46,7 @@ def make_argparser():
     parser.add_argument("--download", help="download file content", metavar="<drive_file>")
 
     parser.add_argument("--insert", help="insert new file", nargs=5,
-            metavar=("<title>", "<description>", "<parent_id>", "<mime_type>", "<filename>"))
+            metavar=("<title -- must include file ext>", "<description>", "<parent_id (if none, pass none)>", "<mime_type>", "<filename>"))
 
     parser.add_argument("--rename", help="rename a file", nargs=2,
             metavar=("<file_id>", "<new_title>"))
@@ -83,8 +83,19 @@ def handle_download(args):
 
 def handle_insert(args):
     service = get_service_object()
-    gdrive.insert_file(service,
-            args[0], args[1], args[2], args[3], args[4])
+
+    title = args[0]
+    description = args[1]
+    parent_id = args[2]
+
+    if parent_id is "none":
+        parent_id = None
+
+    mime_type = args[3]
+    filename = args[4]
+
+    gdrive.insert_file(service, title, description, parent_id, mime_type,
+            filename)
 
 def handle_rename(args):
     pass
