@@ -26,8 +26,8 @@ from oauth import simple_cli
 from gdrive import gdrive
 from os import getenv
 import pickle
-from pprint import pprint
 from db import helper as dbhelper
+from db import schema as dbschema
 
 def get_stored_credentials_path():
     return getenv("HOME") + "/.gdrive_oauth"
@@ -54,6 +54,8 @@ def make_argparser():
     """
     parser = argparse.ArgumentParser(description="gdrive-cli: google drive interface",
         epilog="Author: Tom Dignan <tom.dignan@gmail.com>")
+
+    parser.add_argument("--init-database", help="must be run after install once to initialize the user local database", action="store_true")
 
     parser.add_argument("--authenticate", help="must be done before using other methods", action="store_true")
 
@@ -90,6 +92,8 @@ def handle_args(args):
         handle_rename(args.rename)
     elif args.update is not None:
         handle_update(args.update)
+    elif args.init_database is True:
+        handle_init_database()
 
 def handle_authenticate():
     authenticate()
@@ -133,6 +137,12 @@ def handle_rename(args):
 
 def handle_update(args):
     print "not implemented"
+
+def handle_init_database():
+    print "Creating database..."
+    dbschema.create_schema()
+    print "done."
+
 
 if __name__ == "__main__":
     parser = make_argparser()

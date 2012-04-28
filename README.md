@@ -1,3 +1,5 @@
+Please see http://tomdignan.com/projects/gdrive-cli
+
 STATUS:
 
 * Authentication w/ OAuth is working. It opens your browser.
